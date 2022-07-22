@@ -34,8 +34,15 @@
 # What was the name of the function we have seen to check the length of a container?  Use your CLI to access the Python documentation and get help(len).
 
 
+from unicodedata import name
+
+
 def one(input1, input2):
-    return ""
+    if len(input1) == len(input2):
+        return (f"{input1} {input2}")
+    
+    else:
+        return max(input1, input2, key=len)
 
    # <QUESTION 2>
 
@@ -61,7 +68,13 @@ def one(input1, input2):
 
 
 def two(input):
-    return ""
+    bert_one = input.casefold().find("bert")
+    bert_two = input.casefold().find("bert", bert_one + 4)
+    
+    if bert_one != -1 and bert_two != -1:
+        return input[bert_one +4 : bert_two]
+    else:
+        return ""
 
 
     # <QUESTION 3>
@@ -85,7 +98,14 @@ def two(input):
 
 
 def three(arg1):
-    return ""
+    give = ""
+    
+    if arg1 % 3 == 0:
+        give += "fizz"
+    if arg1 % 5 == 0:
+        give += "buzz"
+        
+    return give or "null"
 
     # <QUESTION 4>
 
@@ -111,7 +131,15 @@ def three(arg1):
 
 
 def four(arg1):
-    return ""
+    max_total = 0
+    for num in map(int, arg1.split()):
+        
+        total = sum(map(int, str(num)))
+        
+        if total > max_total:
+            max_total = total
+        
+    return max_total
 
     # <QUESTION 5>
 
@@ -140,7 +168,17 @@ def four(arg1):
 
 
 def five(input):
-    return ""
+    give = []
+    words = input.split(",")
+    
+    for i in range(0, len(words), 4):
+        name = words[i]
+        encrypted = words[i + 2]
+        
+        if encrypted == "False" and name not in give:
+            give.append(name)
+    
+    return give
 
     # <QUESTION 6>
 
@@ -161,7 +199,7 @@ def five(input):
 
 
 def six(input):
-    return ""
+    return "cei" in input or ("ie" in input and "cie" not in input)
 
     # <QUESTION 7>
 
@@ -179,7 +217,11 @@ def six(input):
 
 
 def seven(input):
-    return ""
+    vowel_count = 0
+    
+    for vowel in "a", "e", "i", "o", "u":
+        vowel_count += input.casefold().count(vowel)
+    return vowel_count
 
     # <QUESTION 8>
 
@@ -198,7 +240,13 @@ def seven(input):
 
 
 def eight(input):
-    return ""
+    give = 1 
+    
+    for y in range (1, input + 1):
+        give *= y
+        
+    return give
+    
 
     # <QUESTION 9>
 
@@ -220,7 +268,15 @@ def eight(input):
 
 
 def nine(inputString, char):
-    return ""
+    inputString = inputString.replace(" ", "")
+    index_char = inputString.find(char)
+    
+    if index_char != -1:
+        return index_char + 1
+    
+    else:
+        return -1
+    
 
     # <QUESTION 10>
 
@@ -241,4 +297,9 @@ def nine(inputString, char):
 
 
 def ten(string, int, char):
-    return ""
+    string = string.replace(" ", "").casefold()
+    
+    if int < len(string):
+        return string[int - 1] == char
+    else:
+        return False
